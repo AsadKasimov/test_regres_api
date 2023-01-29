@@ -1,6 +1,6 @@
 import requests
 from pytest_voluptuous import S
-from schemas.user import users_schema, user_post
+from schemas.user import users_schema
 import logging
 
 
@@ -21,6 +21,10 @@ def test_count_page():
 
 
 def test_post_user():
-    result3 = requests.get('https://reqres.in/api/register')
+    url = 'https://reqres.in/api/users'
+    data = {'name': 'John', 'age': '25'}
+    response = requests.post(url, data=data)
 
-
+    assert response.status_code == 201
+    assert response.json()['name'] == 'John'
+    assert response.json()['age'] == '25'
