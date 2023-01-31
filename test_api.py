@@ -15,7 +15,7 @@ def test_get_user_has_avatar():
     response: Response = requests.get('https://reqres.in/api/users/2')
     print(response.status_code)
     assert response.status_code == 200
-    assert response.json().get('data').get('avatar1', None)
+    assert response.json().get('data').get('avatar')
 
 
 def test_avatat_exists():
